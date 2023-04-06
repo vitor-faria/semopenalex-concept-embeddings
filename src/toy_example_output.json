@@ -1,0 +1,48 @@
+{
+   "conceptId":"C121608353",
+   "x":0,
+   "y":0,
+   "works_count":1000,
+   "nearest_neighbors":[
+      {
+         "conceptId":"C110",
+         "conceptLabel":"Breast Cancer",
+         "distance":4.2,
+         "x":1.23,
+         "y":-4.56,
+         "works_count":1500
+      },
+      {
+         "conceptId":"C123",
+         "conceptLabel":"Skin Cancer",
+         "distance":5,
+         "x":1.23,
+         "y":-4.56,
+         "works_count":1500
+      },
+      {
+         "conceptId":"C132",
+         "conceptLabel":"Tumor",
+         "distance":7.3,
+         "x":1.23,
+         "y":-4.56,
+         "works_count":1500
+      },
+      {
+         "conceptId":"C456",
+         "conceptLabel":"Disease",
+         "distance":11.2,
+         "x":1.23,
+         "y":-4.56,
+         "works_count":1500
+      },
+      {
+         "conceptId":"C789",
+         "conceptLabel":"Infection",
+         "distance":15,
+         "x":1.23,
+         "y":-4.56,
+         "works_count":1500
+      }
+   ]
+}
