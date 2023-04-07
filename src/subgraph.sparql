@@ -1,0 +1,19 @@
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf:<http://xmlns.com/foaf/0.1/>
+PREFIX soap:<https://semopenalex.org/property/>
+
+CONSTRUCT
+WHERE {
+  ?work1 soap:hasConcept <https://semopenalex.org/concept/C154945302> .
+  ?work1 <http://purl.org/spar/fabio/hasPublicationYear> 2022.
+  ?work1 <http://purl.org/spar/cito/cites> ?work2 .
+  ?work2 soap:hasConcept <https://semopenalex.org/concept/C154945302> .
+  ?work1 soap:hasConcept ?topic1 .
+  ?work1 <http://purl.org/dc/terms/creator> ?author1 .
+  ?work1 soap:hasHostVenue ?hostVenue1 .
+  ?hostVenue1 soap:hasVenue ?venue1 .
+  ?work1 soap:citedByCount ?citations1 .
+  ?work2 soap:hasConcept ?topic2 .
+  ?topic1 skos:related ?topic3 .
+}
+LIMIT 500
