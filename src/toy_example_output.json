@@ -1,48 +1,82 @@
-{
-   "conceptId":"C121608353",
-   "x":0,
-   "y":0,
-   "works_count":1000,
-   "nearest_neighbors":[
-      {
-         "conceptId":"C110",
-         "conceptLabel":"Breast Cancer",
-         "distance":4.2,
-         "x":1.23,
-         "y":-4.56,
-         "works_count":1500
-      },
-      {
-         "conceptId":"C123",
-         "conceptLabel":"Skin Cancer",
-         "distance":5,
-         "x":1.23,
-         "y":-4.56,
-         "works_count":1500
-      },
-      {
-         "conceptId":"C132",
-         "conceptLabel":"Tumor",
-         "distance":7.3,
-         "x":1.23,
-         "y":-4.56,
-         "works_count":1500
-      },
-      {
-         "conceptId":"C456",
-         "conceptLabel":"Disease",
-         "distance":11.2,
-         "x":1.23,
-         "y":-4.56,
-         "works_count":1500
-      },
-      {
-         "conceptId":"C789",
-         "conceptLabel":"Infection",
-         "distance":15,
-         "x":1.23,
-         "y":-4.56,
-         "works_count":1500
-      }
-   ]
-}
+[
+   {
+      "distance":1.1102230246251565e-16,
+      "rank":0,
+      "concept_l":"Artificial intelligence",
+      "worksCount":"567075",
+      "x":0.0,
+      "y":0.0
+   },
+   {
+      "distance":0.43076863823368516,
+      "rank":1,
+      "concept_l":"Space (punctuation)",
+      "worksCount":"24199",
+      "x":-4.787503424257378,
+      "y":2.6610445689215254
+   },
+   {
+      "distance":0.4360835236506102,
+      "rank":2,
+      "concept_l":"Operating system",
+      "worksCount":"253391",
+      "x":-4.554476233581499,
+      "y":2.7239221195732473
+   },
+   {
+      "distance":0.43943024262280195,
+      "rank":3,
+      "concept_l":"Distribution (mathematics)",
+      "worksCount":"13542",
+      "x":-4.729177526575347,
+      "y":2.3659713894680756
+   },
+   {
+      "distance":0.4394389256212974,
+      "rank":4,
+      "concept_l":"Applied mathematics",
+      "worksCount":"48502",
+      "x":-4.913842862733659,
+      "y":2.2748918822232342
+   },
+   {
+      "distance":0.4808731188770361,
+      "rank":5,
+      "concept_l":"Mathematical optimization",
+      "worksCount":"69735",
+      "x":-5.1122033248359005,
+      "y":2.2249516040076402
+   },
+   {
+      "distance":0.4940192515605287,
+      "rank":6,
+      "concept_l":"Mathematical analysis",
+      "worksCount":"198881",
+      "x":-5.137515833404127,
+      "y":2.401834245085687
+   },
+   {
+      "distance":0.49572373218504306,
+      "rank":7,
+      "concept_l":"Psychotherapist",
+      "worksCount":"67948",
+      "x":1.576437162919638,
+      "y":0.5145921540646228
+   },
+   {
+      "distance":0.4976647538059782,
+      "rank":8,
+      "concept_l":"Inferior colliculus",
+      "worksCount":"125",
+      "x":2.5881042486695387,
+      "y":0.849633608560211
+   },
+   {
+      "distance":0.5072958388068023,
+      "rank":9,
+      "concept_l":"Data point",
+      "worksCount":"270",
+      "x":-1.2238163247659914,
+      "y":-3.284281969138804
+   }
+]

@@ -55,12 +55,17 @@ def read_concept(
 
     if all([
         concept_id == "C121608353",
-        year == 2023,
-        neighbors == 5,
+        year == 2022,
+        neighbors == 10,
+        limit == 10000,
+        max_depth == 6,
+        max_walks == 12,
+        with_reverse == True,
+        random_seed == 42,
     ]):
         with open('src/toy_example_output.json', 'r') as file:
             toy_example = json.load(file)
-            response = toy_example
+        response = toy_example
 
     else:
         response = get_results(

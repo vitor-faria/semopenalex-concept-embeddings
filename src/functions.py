@@ -129,7 +129,7 @@ def get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k
     return result_df.set_index('concept').sort_values(by="rank").head(k)
 
 
-def get_concept_labels(year):
+def get_concept_labels(year):  # TODO fix works count for current year
     url = "https://semopenalex.org/sparql"
     sparql = SPARQLWrapper(url)
 
@@ -191,6 +191,7 @@ def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=1
 
     coordinates_df = get_coordinates(input_concept, concepts_list, concepts_embeddings)
     labels_df = get_concept_labels(year)
+    labels_df['worksCount'] = labels_df['worksCount'].astype(int)
     neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
 
     neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
