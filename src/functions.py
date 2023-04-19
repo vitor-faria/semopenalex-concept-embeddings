@@ -9,32 +9,35 @@ from pyrdf2vec.walkers import RandomWalker
 from sklearn.decomposition import PCA
 
 
-def get_kg(broader_concept, year, limit=500000):
+def get_kg(broader_concept_id, year, limit=500000):
     url = "https://semopenalex.org/sparql"
     sparql = SPARQLWrapper(url)
     query_prefix = """
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
     PREFIX foaf:<http://xmlns.com/foaf/0.1/>
+    PREFIX soap:<https://semopenalex.org/property/>
     """
-    query_start = """
+    where_start = """
     CONSTRUCT
     WHERE {
-        ?work1 <https://semopenalex.org/property/hasConcept> ?topic1 .
+        
+    """
+    where_patterns = f"""
+        ?work1 soap:hasConcept <https://semopenalex.org/concept/{broader_concept_id}> .  
+        ?work1 <http://purl.org/spar/fabio/hasPublicationYear> {year} .
         ?work1 <http://purl.org/spar/cito/cites> ?work2 .
-        ?work2 <https://semopenalex.org/property/hasConcept> ?topic2 .
-        ?work1 <https://semopenalex.org/property/citedByCount> ?citations1 .
-        ?work2 <https://semopenalex.org/property/citedByCount> ?citations2 .
+        ?work2 soap:hasConcept <https://semopenalex.org/concept/{broader_concept_id}> .
+        ?work1 soap:hasConcept ?topic1 .
+        ?work1 <http://purl.org/dc/terms/creator> ?author1 .
+        ?work1 soap:hasHostVenue ?hostVenue1 .
+        ?hostVenue1 soap:hasVenue ?venue1 .
+        ?work2 soap:hasConcept ?topic2 .
     """
-    query_middle = f"""
-        ?topic1 skos:broader <https://semopenalex.org/concept/{broader_concept}> .
-        ?topic2 skos:broader <https://semopenalex.org/concept/{broader_concept}> .
-        ?work1 <http://purl.org/spar/fabio/hasPublicationYear> {year}.
-    """
-    query_end = """
+    where_end = """
     }
     LIMIT 
     """
-    construct_query = query_prefix + query_start + query_middle + query_end + str(limit)
+    construct_query = query_prefix + where_start + where_patterns + where_end + str(limit)
 
     sparql.setQuery(construct_query)
     sparql.setReturnFormat(TURTLE)
@@ -42,69 +45,59 @@ def get_kg(broader_concept, year, limit=500000):
     g = rdflib.Graph()
     g.parse(data=results, format="turtle")
 
+    work_has_concept = rdflib.term.URIRef('https://semopenalex.org/property/hasConcept')
+    concept_has_work = rdflib.term.URIRef('https://semopenalex.org/property/conceptHasWork')
+    for work, relation, concept in g.triples((None, work_has_concept, None)):
+        g.add((concept, concept_has_work, work))
+
     return g
 
 
-def get_entities(g, broader_concept, min_citation_count=500):
+def get_concepts_list(g):
+    work_has_concept = rdflib.term.URIRef('https://semopenalex.org/property/hasConcept')
     concepts = set()
+    for work, relation, concept in g.triples((None, work_has_concept, None)):
+        concepts.add(str(concept))
 
-    for rdf_subject, rdf_predicate, rdf_object in g.triples((None, None, None)):
-        # Subjects
-        if '/concept/' in str(rdf_subject) and broader_concept not in str(rdf_subject):
-            concepts.add(str(rdf_subject))
-        # Objects
-        elif '/concept/' in str(rdf_object) and broader_concept not in str(rdf_object):
-            concepts.add(str(rdf_object))
-
-    concepts_list = [concept for concept in concepts]
-
-    relevant_works = set()
-    citedByCount = rdflib.term.URIRef('https://semopenalex.org/property/citedByCount')
-    for subject_work, predicate_cited_count, object_count_citations in g.triples((None, citedByCount, None)):
-        if int(object_count_citations) >= min_citation_count:
-            relevant_works.add(str(subject_work))
-
-    relevant_works_list = [work for work in relevant_works]
-
-    return relevant_works_list, concepts_list
+    return [concept for concept in concepts]
 
 
-def get_embeddings(g, works, concepts, year, max_depth=6, max_walks=12, random_seed=42):
-    ttl_path = f"{year}_triples.ttl"
+def get_embeddings(g, max_depth=6, max_walks=12, with_reverse=True, random_seed=42):
+    concepts = get_concepts_list(g)
+    ttl_path = "src/temp/triples.ttl"
     with open(ttl_path, "w", encoding="utf-8") as file:
         file.write(g.serialize(format='turtle'))
-
+    print('done 1')
     knowledge_graph = KG(
         ttl_path,
         skip_predicates={
-            'https://semopenalex.org/property/citedByCount',
-            'http://www.w3.org/2004/02/skos/core#broader',
             'http://purl.org/spar/fabio/hasPublicationYear',
         },
     )
-
+    print('done 2')
     transformer = RDF2VecTransformer(
         Word2Vec(
             seed=random_seed,
             workers=1,
         ),
         walkers=[RandomWalker(
-            max_depth=6,
-            max_walks=12,
+            max_depth=max_depth,
+            max_walks=max_walks,
             sampler=PageRankSampler(),
-            with_reverse=True,
+            with_reverse=with_reverse,
             md5_bytes=None,
             random_state=random_seed,
         )],
         verbose=2
     )
+    print('done 3')
     walks = transformer.get_walks(
         knowledge_graph,
-        works + concepts
+        concepts,
     )
-
+    print('done 4')
     transformer.fit(walks)
-
+    print('done 5')
     concepts_embeddings, literals = transformer.transform(
         kg=knowledge_graph,
         entities=concepts,
