@@ -1,82 +1,82 @@
 [
    {
-      "distance":1.1102230246251565e-16,
+      "distance":0.0,
       "rank":0,
       "concept_l":"Artificial intelligence",
-      "worksCount":"567075",
+      "worksCount":567075,
       "x":0.0,
       "y":0.0
    },
    {
-      "distance":0.43076863823368516,
+      "distance":0.5066506788747103,
       "rank":1,
-      "concept_l":"Space (punctuation)",
-      "worksCount":"24199",
-      "x":-4.787503424257378,
-      "y":2.6610445689215254
+      "concept_l":"Physics",
+      "worksCount":1077961,
+      "x":0.030877522435068916,
+      "y":2.1896927406915045
    },
    {
-      "distance":0.4360835236506102,
+      "distance":0.5803873274544532,
       "rank":2,
-      "concept_l":"Operating system",
-      "worksCount":"253391",
-      "x":-4.554476233581499,
-      "y":2.7239221195732473
+      "concept_l":"Acoustics",
+      "worksCount":88105,
+      "x":-2.9482243494594935,
+      "y":0.23968942810772909
    },
    {
-      "distance":0.43943024262280195,
+      "distance":0.5878551484193529,
       "rank":3,
-      "concept_l":"Distribution (mathematics)",
-      "worksCount":"13542",
-      "x":-4.729177526575347,
-      "y":2.3659713894680756
+      "concept_l":"Noise exposure",
+      "worksCount":285,
+      "x":0.8554223785880043,
+      "y":5.286977285414128
    },
    {
-      "distance":0.4394389256212974,
+      "distance":0.6251570265417155,
       "rank":4,
-      "concept_l":"Applied mathematics",
-      "worksCount":"48502",
-      "x":-4.913842862733659,
-      "y":2.2748918822232342
+      "concept_l":"Audiogram",
+      "worksCount":186,
+      "x":-2.4525268041647736,
+      "y":0.5338004602542403
    },
    {
-      "distance":0.4808731188770361,
+      "distance":0.6298626740901638,
       "rank":5,
-      "concept_l":"Mathematical optimization",
-      "worksCount":"69735",
-      "x":-5.1122033248359005,
-      "y":2.2249516040076402
+      "concept_l":"Multiple disabilities",
+      "worksCount":38,
+      "x":-1.4429133954131586,
+      "y":-3.1171486529289028
    },
    {
-      "distance":0.4940192515605287,
+      "distance":0.64451651243754,
       "rank":6,
-      "concept_l":"Mathematical analysis",
-      "worksCount":"198881",
-      "x":-5.137515833404127,
-      "y":2.401834245085687
+      "concept_l":"Programming language",
+      "worksCount":251030,
+      "x":1.911334680265814,
+      "y":-4.364256106103879
    },
    {
-      "distance":0.49572373218504306,
+      "distance":0.6447449794258002,
       "rank":7,
-      "concept_l":"Psychotherapist",
-      "worksCount":"67948",
-      "x":1.576437162919638,
-      "y":0.5145921540646228
+      "concept_l":"Nucleus",
+      "worksCount":2065,
+      "x":-0.7588652508660001,
+      "y":-1.695343730016766
    },
    {
-      "distance":0.4976647538059782,
+      "distance":0.6535453530681494,
       "rank":8,
-      "concept_l":"Inferior colliculus",
-      "worksCount":"125",
-      "x":2.5881042486695387,
-      "y":0.849633608560211
+      "concept_l":"Intellectual disability",
+      "worksCount":2067,
+      "x":-0.8115512372490086,
+      "y":-3.4604669492084383
    },
    {
-      "distance":0.5072958388068023,
+      "distance":0.6568970326572667,
       "rank":9,
-      "concept_l":"Data point",
-      "worksCount":"270",
-      "x":-1.2238163247659914,
-      "y":-3.284281969138804
+      "concept_l":"Image (mathematics)",
+      "worksCount":66045,
+      "x":0.7505152830411931,
+      "y":4.438561176881581
    }
 ]
