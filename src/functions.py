@@ -1,12 +1,14 @@
-import rdflib
-from SPARQLWrapper import SPARQLWrapper, TURTLE, JSON
+import numpy as np
 import pandas as pd
 from pyrdf2vec.graphs import KG
 from pyrdf2vec import RDF2VecTransformer
 from pyrdf2vec.embedders import Word2Vec
 from pyrdf2vec.samplers import PageRankSampler
 from pyrdf2vec.walkers import RandomWalker
+import rdflib
+from scipy.spatial.distance import cdist
 from sklearn.decomposition import PCA
+from SPARQLWrapper import SPARQLWrapper, TURTLE, JSON
 
 
 def get_kg(broader_concept_id, year, limit=500000):
@@ -67,14 +69,16 @@ def get_embeddings(g, max_depth=6, max_walks=12, with_reverse=True, random_seed=
     ttl_path = "src/temp/triples.ttl"
     with open(ttl_path, "w", encoding="utf-8") as file:
         file.write(g.serialize(format='turtle'))
-    print('done 1')
+    print('serialized turtle file')
+
     knowledge_graph = KG(
         ttl_path,
         skip_predicates={
             'http://purl.org/spar/fabio/hasPublicationYear',
         },
     )
-    print('done 2')
+    print('declared KG')
+
     transformer = RDF2VecTransformer(
         Word2Vec(
             seed=random_seed,
@@ -90,32 +94,58 @@ def get_embeddings(g, max_depth=6, max_walks=12, with_reverse=True, random_seed=
         )],
         verbose=2
     )
-    print('done 3')
+    print('declared Transformer')
+
     walks = transformer.get_walks(
         knowledge_graph,
         concepts,
     )
-    print('done 4')
+    print('finished walking')
+
     transformer.fit(walks)
-    print('done 5')
+    print('fitted walks')
+
     concepts_embeddings, literals = transformer.transform(
         kg=knowledge_graph,
         entities=concepts,
     )
+    print('calculated embeddings')
 
-    return concepts_embeddings
+    return concepts, concepts_embeddings
 
 
-def get_concept_labels():
+def get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k=10):
+    cosine_distance = cdist(concepts_embeddings, concepts_embeddings, 'cosine')
+    input_index = concepts_list.index(input_concept)
+    distance_array = cosine_distance[input_index]
+    rank = np.argsort(np.argsort(distance_array))
+
+    result_df = pd.DataFrame({
+        "concept": concepts_list,
+        "distance": distance_array,
+        "rank": rank
+    })
+
+    return result_df.set_index('concept').sort_values(by="rank").head(k)
+
+
+def get_concept_labels(year):
     url = "https://semopenalex.org/sparql"
     sparql = SPARQLWrapper(url)
 
-    concepts_query = """
+    query_start = """
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    SELECT *
-    WHERE {?concept skos:prefLabel ?concept_l}
+    PREFIX soap:<https://semopenalex.org/property/>
+    SELECT ?concept ?concept_l ?worksCount
+    WHERE {
     """
-
+    patterns = f"""
+        ?concept skos:prefLabel ?concept_l . 
+        ?concept soap:countsByYear ?countsByYear .
+        ?countsByYear soap:year {year} .
+        ?countsByYear soap:worksCount ?worksCount .
+    """
+    concepts_query = query_start + patterns + "}"
     sparql.setReturnFormat(JSON)
     sparql.setQuery(concepts_query)
     all_results = []
@@ -132,39 +162,55 @@ def get_concept_labels():
     return pd.DataFrame(all_results).set_index('concept')
 
 
-def get_concepts_df(concepts_embeddings, concepts, g):
+def get_coordinates(input_concept, concepts_list, concepts_embeddings):
     pca = PCA(n_components=2)
     reduced_concepts_embeddings = pca.fit_transform(concepts_embeddings)
+    input_index = concepts_list.index(input_concept)
+    current_concept_pca = reduced_concepts_embeddings[input_index]
 
-    concepts_df = pd.DataFrame(
-        reduced_concepts_embeddings,
-        columns=["PC 0", "PC 1"],
-        index=concepts,
+    translated_pca = []
+    for reduced_embedding in reduced_concepts_embeddings:
+        translated_pca.append(reduced_embedding - current_concept_pca)
+
+    return pd.DataFrame(
+        translated_pca,
+        columns=["x", "y"],
+        index=concepts_list,
     )
 
-    has_concept = rdflib.term.URIRef('https://semopenalex.org/property/hasConcept')
 
-    all_works = []
-    all_concepts = []
-    for work, rdf_predicate, concept in g.triples((None, has_concept, None)):
-        all_works.append(str(work))
-        all_concepts.append(str(concept))
+def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=10):
+    pca = PCA(n_components=2)
+    reduced_concepts_embeddings = pca.fit_transform(concepts_embeddings)
+    input_index = concepts_list.index(input_concept)
+    current_concept_pca = reduced_concepts_embeddings[input_index]
 
-    concept_works = pd.DataFrame({
-        "work": all_works,
-        "concept": all_concepts,
-    })
+    translated_pca = []
+    for reduced_embedding in reduced_concepts_embeddings:
+        translated_pca.append(reduced_embedding - current_concept_pca)
 
-    concept_labels = get_concept_labels()
-    works_per_concept = concept_works.groupby(by=['concept']).count()
-    works_per_concept['log_work'] = works_per_concept['work'].apply(math.log2)
-    works_per_concept['label'] = concept_labels['concept_l']
+    coordinates_df = get_coordinates(input_concept, concepts_list, concepts_embeddings)
+    labels_df = get_concept_labels(year)
+    neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
 
-    works_per_concept = pd.merge(
-        concepts_df,
-        works_per_concept,
-        left_index=True,
-        right_index=True,
-    )
+    neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
 
-    return works_per_concept
+    return pd.merge(neighbors_labels, coordinates_df, left_index=True, right_index=True)
+
+
+def get_results(
+    broader_concept_id,
+    year,
+    limit=500000,
+    max_depth=6,
+    max_walks=12,
+    with_reverse=True,
+    random_seed=42,
+    k=10,
+):
+    g = get_kg(broader_concept_id, year, limit)
+    concepts, concepts_embeddings = get_embeddings(g, max_depth, max_walks, with_reverse, random_seed)
+    input_concept = f'https://semopenalex.org/concept/{broader_concept_id}'
+    concepts_df = get_concepts_df(input_concept, concepts, concepts_embeddings, year, k)
+
+    return concepts_df.to_dict(orient='records')
