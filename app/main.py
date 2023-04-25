@@ -22,7 +22,7 @@ def read_root():
 @app.get("/concept/{concept_id}")
 def read_concept(
     concept_id: str,
-    year: int,
+    year: Union[int, None] = None,
     neighbors: Union[int, None] = None,
     limit: Union[int, None] = None,
     max_depth: Union[int, None] = None,
