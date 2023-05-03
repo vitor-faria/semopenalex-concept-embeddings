@@ -19,7 +19,7 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/concept/{concept_id}")
+@app.get("/embeddings")
 def read_concept(
     concept_id: str,
     year: Union[int, None] = None,
@@ -54,13 +54,13 @@ def read_concept(
     response.update({"random_seed": random_seed})
 
     if all([
-        concept_id == "C121608353",
+        concept_id == "C154945302",
         year == 2022,
         neighbors == 10,
-        limit == 10000,
+        limit == 20000,
         max_depth == 6,
         max_walks == 12,
-        with_reverse == True,
+        with_reverse,
         random_seed == 42,
     ]):
         with open('src/toy_example_output.json', 'r') as file:
@@ -69,7 +69,7 @@ def read_concept(
 
     else:
         response = get_results(
-            broader_concept_id=concept_id,
+            concept_id=concept_id,
             year=year,
             limit=limit,
             max_depth=max_depth,

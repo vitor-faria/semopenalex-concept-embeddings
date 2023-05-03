@@ -11,7 +11,7 @@ from sklearn.decomposition import PCA
 from SPARQLWrapper import SPARQLWrapper, TURTLE, JSON
 
 
-def get_kg(broader_concept_id, year, limit=500000):
+def get_kg(concept_id, year, limit=500000):
     url = "https://semopenalex.org/sparql"
     sparql = SPARQLWrapper(url)
     query_prefix = """
@@ -25,14 +25,13 @@ def get_kg(broader_concept_id, year, limit=500000):
         
     """
     where_patterns = f"""
-        ?work1 soap:hasConcept <https://semopenalex.org/concept/{broader_concept_id}> .  
+        ?work1 soap:hasConcept <https://semopenalex.org/concept/{concept_id}> .  
         ?work1 <http://purl.org/spar/fabio/hasPublicationYear> {year} .
         ?work1 <http://purl.org/spar/cito/cites> ?work2 .
-        ?work2 soap:hasConcept <https://semopenalex.org/concept/{broader_concept_id}> .
+        ?work2 soap:hasConcept <https://semopenalex.org/concept/{concept_id}> .
         ?work1 soap:hasConcept ?topic1 .
         ?work1 <http://purl.org/dc/terms/creator> ?author1 .
-        ?work1 soap:hasHostVenue ?hostVenue1 .
-        ?hostVenue1 soap:hasVenue ?venue1 .
+        ?author1 <http://www.w3.org/ns/org#memberOf> ?institution1 .
         ?work2 soap:hasConcept ?topic2 .
     """
     where_end = """
@@ -40,6 +39,8 @@ def get_kg(broader_concept_id, year, limit=500000):
     LIMIT 
     """
     construct_query = query_prefix + where_start + where_patterns + where_end + str(limit)
+
+    print(construct_query)
 
     sparql.setQuery(construct_query)
     sparql.setReturnFormat(TURTLE)
@@ -66,52 +67,58 @@ def get_concepts_list(g):
 
 def get_embeddings(g, max_depth=6, max_walks=12, with_reverse=True, random_seed=42):
     concepts = get_concepts_list(g)
-    ttl_path = "src/temp/triples.ttl"
-    with open(ttl_path, "w", encoding="utf-8") as file:
-        file.write(g.serialize(format='turtle'))
-    print('serialized turtle file')
+    print(f'fetched {len(concepts)} concepts')
 
-    knowledge_graph = KG(
-        ttl_path,
-        skip_predicates={
-            'http://purl.org/spar/fabio/hasPublicationYear',
-        },
-    )
-    print('declared KG')
+    if len(concepts) > 0:
+        ttl_path = "src/temp/triples.ttl"
+        with open(ttl_path, "w", encoding="utf-8") as file:
+            file.write(g.serialize(format='turtle'))
+        print('serialized turtle file')
 
-    transformer = RDF2VecTransformer(
-        Word2Vec(
-            seed=random_seed,
-            workers=1,
-        ),
-        walkers=[RandomWalker(
-            max_depth=max_depth,
-            max_walks=max_walks,
-            sampler=PageRankSampler(),
-            with_reverse=with_reverse,
-            md5_bytes=None,
-            random_state=random_seed,
-        )],
-        verbose=2
-    )
-    print('declared Transformer')
+        knowledge_graph = KG(
+            ttl_path,
+            skip_predicates={
+                'http://purl.org/spar/fabio/hasPublicationYear',
+            },
+        )
+        print('declared KG')
 
-    walks = transformer.get_walks(
-        knowledge_graph,
-        concepts,
-    )
-    print('finished walking')
+        transformer = RDF2VecTransformer(
+            Word2Vec(
+                seed=random_seed,
+                workers=1,
+            ),
+            walkers=[RandomWalker(
+                max_depth=max_depth,
+                max_walks=max_walks,
+                sampler=PageRankSampler(),
+                with_reverse=with_reverse,
+                md5_bytes=None,
+                random_state=random_seed,
+            )],
+            verbose=2
+        )
+        print('declared Transformer')
 
-    transformer.fit(walks)
-    print('fitted walks')
+        walks = transformer.get_walks(
+            knowledge_graph,
+            concepts,
+        )
+        print('finished walking')
 
-    concepts_embeddings, literals = transformer.transform(
-        kg=knowledge_graph,
-        entities=concepts,
-    )
-    print('calculated embeddings')
+        transformer.fit(walks)
+        print('fitted walks')
 
-    return concepts, concepts_embeddings
+        concepts_embeddings, literals = transformer.transform(
+            kg=knowledge_graph,
+            entities=concepts,
+        )
+        print('calculated embeddings')
+
+        return concepts, concepts_embeddings
+
+    else:
+        return [], []
 
 
 def get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k=10):
@@ -195,23 +202,28 @@ def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=1
     neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
 
     neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
+    neighbors_labels.rename(columns={'concept_l': 'prefLabel'}, inplace=True)
 
     return pd.merge(neighbors_labels, coordinates_df, left_index=True, right_index=True)
 
 
 def get_results(
-    broader_concept_id,
+    concept_id,
     year,
-    limit=500000,
+    limit,
     max_depth=6,
     max_walks=12,
     with_reverse=True,
     random_seed=42,
     k=10,
 ):
-    g = get_kg(broader_concept_id, year, limit)
+    g = get_kg(concept_id, year, limit)
     concepts, concepts_embeddings = get_embeddings(g, max_depth, max_walks, with_reverse, random_seed)
-    input_concept = f'https://semopenalex.org/concept/{broader_concept_id}'
-    concepts_df = get_concepts_df(input_concept, concepts, concepts_embeddings, year, k)
+    if concepts:
+        input_concept = f'https://semopenalex.org/concept/{concept_id}'
+        concepts_df = get_concepts_df(input_concept, concepts, concepts_embeddings, year, k)
 
-    return concepts_df.to_dict(orient='records')
+        return concepts_df.reset_index(names='concept').to_dict(orient='records')
+
+    else:
+        return []
