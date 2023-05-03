@@ -54,10 +54,10 @@ def read_concept(
     response.update({"random_seed": random_seed})
 
     if all([
-        concept_id == "C121608353",
+        concept_id == "C154945302",
         year == 2022,
         neighbors == 10,
-        limit == 10000,
+        limit == 20000,
         max_depth == 6,
         max_walks == 12,
         with_reverse,

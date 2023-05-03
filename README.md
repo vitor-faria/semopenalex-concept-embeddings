@@ -71,9 +71,10 @@ Defaults to `42`.
 One specific pre-computed example is returned for the following query:
 
 ```
-/embeddings?concept_id=C121608353?limit=10000
+/embeddings?concept_id=C154945302&limit=20000
 ```
 
-This toy example is materialized in a file, so the API will not execute any pipeline 
+This toy example (Concept [Artificial Intelligence](https://semopenalex.org/concept/C154945302), 
+with 20k triples and default parameters) is materialized in a file, so the API will not execute any pipeline 
 step. This is to illustrate how results are presented, and also to easily check if the 
 API is available without computing embeddings.

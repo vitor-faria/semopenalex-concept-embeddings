@@ -147,7 +147,7 @@ def get_concept_labels(year):  # TODO fix works count for current year
     WHERE {
     """
     patterns = f"""
-        ?concept skos:prefLabel ?concept_l . 
+        ?concept skos:prefLabel ?prefLabel . 
         ?concept soap:countsByYear ?countsByYear .
         ?countsByYear soap:year {year} .
         ?countsByYear soap:worksCount ?worksCount .
@@ -222,7 +222,7 @@ def get_results(
         input_concept = f'https://semopenalex.org/concept/{concept_id}'
         concepts_df = get_concepts_df(input_concept, concepts, concepts_embeddings, year, k)
 
-        return concepts_df.reset_index().to_dict(orient='records')
+        return concepts_df.reset_index(names='concept').to_dict(orient='records')
 
     else:
         return []
