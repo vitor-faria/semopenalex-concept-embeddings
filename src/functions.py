@@ -147,7 +147,7 @@ def get_concept_labels(year):  # TODO fix works count for current year
     WHERE {
     """
     patterns = f"""
-        ?concept skos:prefLabel ?prefLabel . 
+        ?concept skos:prefLabel ?concept_l . 
         ?concept soap:countsByYear ?countsByYear .
         ?countsByYear soap:year {year} .
         ?countsByYear soap:worksCount ?worksCount .
@@ -202,6 +202,7 @@ def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=1
     neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
 
     neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
+    neighbors_labels.rename(columns={'concept_l': 'prefLabel'}, inplace=True)
 
     return pd.merge(neighbors_labels, coordinates_df, left_index=True, right_index=True)
 
