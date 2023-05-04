@@ -1,0 +1,378 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix semopenalex: <http://www.metaphactory.semopenalex.com/app/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sc: <https://semopenalex.org/class/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sp: <https://semopenalex.org/property/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbprop: <http://dbpedia.org/property/> .
+@prefix dbpedia-owl: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix elastic: <http://www.ontotext.com/connectors/elasticsearch#> .
+
+<https://semopenalex.org/work/W4223656335> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>;
+  <http://purl.org/spar/fabio/hasPublicationYear> 2022;
+  <http://purl.org/spar/cito/cites> <https://semopenalex.org/work/W1641498739>, <https://semopenalex.org/work/W2087347434>,
+    <https://semopenalex.org/work/W2911964244>, <https://semopenalex.org/work/W2170860445>,
+    <https://semopenalex.org/work/W2592929672>, <https://semopenalex.org/work/W2017896827>,
+    <https://semopenalex.org/work/W2905810301>, <https://semopenalex.org/work/W1596717185>,
+    <https://semopenalex.org/work/W2621028221>, <https://semopenalex.org/work/W2036439084>,
+    <https://semopenalex.org/work/W2075710390>, <https://semopenalex.org/work/W2098765040>,
+    <https://semopenalex.org/work/W2185967267>, <https://semopenalex.org/work/W2115638141>,
+    <https://semopenalex.org/work/W2061729089>, <https://semopenalex.org/work/W1673391334>,
+    <https://semopenalex.org/work/W2117530999>, <https://semopenalex.org/work/W2538830880>,
+    <https://semopenalex.org/work/W2988916019>, <https://semopenalex.org/work/W1815337875>,
+    <https://semopenalex.org/work/W1974314515>, <https://semopenalex.org/work/W2063552084>,
+    <https://semopenalex.org/work/W2016291052>, <https://semopenalex.org/work/W2038344945>,
+    <https://semopenalex.org/work/W2050729568>, <https://semopenalex.org/work/W2090221122>,
+    <https://semopenalex.org/work/W2905510341>, <https://semopenalex.org/work/W2132425109>,
+    <https://semopenalex.org/work/W1978627835>, <https://semopenalex.org/work/W2895582358>,
+    <https://semopenalex.org/work/W2798986179>, <https://semopenalex.org/work/W2047424515>,
+    <https://semopenalex.org/work/W2791566664>, <https://semopenalex.org/work/W2123498585>,
+    <https://semopenalex.org/work/W2252826794>, <https://semopenalex.org/work/W2767488589>,
+    <https://semopenalex.org/work/W2768274329>, <https://semopenalex.org/work/W2774005525>,
+    <https://semopenalex.org/work/W2911628061>, <https://semopenalex.org/work/W2005096862>,
+    <https://semopenalex.org/work/W2557664022>, <https://semopenalex.org/work/W2100822646>,
+    <https://semopenalex.org/work/W2204969442>;
+  dct:creator <https://semopenalex.org/author/A4223504062>, <https://semopenalex.org/author/A4356737578> .
+
+<https://semopenalex.org/work/W1641498739> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C205649164>,
+    <https://semopenalex.org/concept/C144133560>, <https://semopenalex.org/concept/C162324750>,
+    <https://semopenalex.org/concept/C199360897>, <https://semopenalex.org/concept/C2777904410>,
+    <https://semopenalex.org/concept/C115961682>, <https://semopenalex.org/concept/C187736073>,
+    <https://semopenalex.org/concept/C119857082>, <https://semopenalex.org/concept/C162853370>,
+    <https://semopenalex.org/concept/C185798385>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C86251818>, <https://semopenalex.org/concept/C13280743>,
+    <https://semopenalex.org/concept/C177264268>, <https://semopenalex.org/concept/C2780451532>,
+    <https://semopenalex.org/concept/C89600930>, <https://semopenalex.org/concept/C124504099>,
+    <https://semopenalex.org/concept/C58489278> .
+
+<https://semopenalex.org/author/A4223504062> <http://www.w3.org/ns/org#memberOf> <https://semopenalex.org/institution/I152869788> .
+
+<https://semopenalex.org/work/W2087347434> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C153294291>, <https://semopenalex.org/concept/C11413529>,
+    <https://semopenalex.org/concept/C119857082>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C2777211547>, <https://semopenalex.org/concept/C774472>,
+    <https://semopenalex.org/concept/C51632099> .
+
+<https://semopenalex.org/work/W2911964244> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148> .
+
+<https://semopenalex.org/work/W2170860445> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C205649164>, <https://semopenalex.org/concept/C62520636>,
+    <https://semopenalex.org/concept/C134306372>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C158693339>, <https://semopenalex.org/concept/C185798385>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C66905080>, <https://semopenalex.org/concept/C13280743>,
+    <https://semopenalex.org/concept/C94375191>, <https://semopenalex.org/concept/C48372109>,
+    <https://semopenalex.org/concept/C177148314>, <https://semopenalex.org/concept/C95623464>,
+    <https://semopenalex.org/concept/C124975894>, <https://semopenalex.org/concept/C125168437> .
+
+<https://semopenalex.org/work/W2592929672> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C115961682>, <https://semopenalex.org/concept/C202444582>,
+    <https://semopenalex.org/concept/C119857082>, <https://semopenalex.org/concept/C9652623>,
+    <https://semopenalex.org/concept/C108583219>, <https://semopenalex.org/concept/C2776151529>,
+    <https://semopenalex.org/concept/C89600930>, <https://semopenalex.org/concept/C2522767166>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C81363708> .
+
+<https://semopenalex.org/work/W2017896827> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C153180895> .
+
+<https://semopenalex.org/work/W2905810301> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C86803240>,
+    <https://semopenalex.org/concept/C162324750>, <https://semopenalex.org/concept/C38652104>,
+    <https://semopenalex.org/concept/C151730666>, <https://semopenalex.org/concept/C50522688>,
+    <https://semopenalex.org/concept/C160735492>, <https://semopenalex.org/concept/C97541855>,
+    <https://semopenalex.org/concept/C107457646>, <https://semopenalex.org/concept/C2779343474>,
+    <https://semopenalex.org/concept/C108583219>, <https://semopenalex.org/concept/C26517878>,
+    <https://semopenalex.org/concept/C2522767166> .
+
+<https://semopenalex.org/work/W1596717185> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C139502532> .
+
+<https://semopenalex.org/work/W2621028221> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C134306372>,
+    <https://semopenalex.org/concept/C33923547>, <https://semopenalex.org/concept/C15744967>,
+    <https://semopenalex.org/concept/C169760540>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C108583219>, <https://semopenalex.org/concept/C58693492>,
+    <https://semopenalex.org/concept/C89600930>, <https://semopenalex.org/concept/C177148314>,
+    <https://semopenalex.org/concept/C2984842247> .
+
+<https://semopenalex.org/work/W2036439084> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C134306372>,
+    <https://semopenalex.org/concept/C33923547>, <https://semopenalex.org/concept/C15744967>,
+    <https://semopenalex.org/concept/C138885662>, <https://semopenalex.org/concept/C41895202>,
+    <https://semopenalex.org/concept/C119857082>, <https://semopenalex.org/concept/C148483581>,
+    <https://semopenalex.org/concept/C50644808>, <https://semopenalex.org/concept/C70518039>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C118552586>,
+    <https://semopenalex.org/concept/C58693492>, <https://semopenalex.org/concept/C5274069>,
+    <https://semopenalex.org/concept/C54170458>, <https://semopenalex.org/concept/C22019652>,
+    <https://semopenalex.org/concept/C111030470>, <https://semopenalex.org/concept/C177148314>,
+    <https://semopenalex.org/concept/C2776401178> .
+
+<https://semopenalex.org/work/W2075710390> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C126838900>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C15744967>,
+    <https://semopenalex.org/concept/C169760540>, <https://semopenalex.org/concept/C50644808>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C143409427>, <https://semopenalex.org/concept/C2779226451>,
+    <https://semopenalex.org/concept/C47432892> .
+
+<https://semopenalex.org/work/W2098765040> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C153180895> .
+
+<https://semopenalex.org/work/W2185967267> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C196216189>, <https://semopenalex.org/concept/C46286280>,
+    <https://semopenalex.org/concept/C47432892>, <https://semopenalex.org/concept/C141404830>,
+    <https://semopenalex.org/concept/C169258074> .
+
+<https://semopenalex.org/work/W2115638141> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C105702510>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C159985019>,
+    <https://semopenalex.org/concept/C192562407>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C2779300802>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C41952129> .
+
+<https://semopenalex.org/work/W2061729089> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C62520636>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C105795698>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C58166>,
+    <https://semopenalex.org/concept/C2524010>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C160633673>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C22679943>, <https://semopenalex.org/concept/C106131492>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C2777210771>,
+    <https://semopenalex.org/concept/C99498987>, <https://semopenalex.org/concept/C82233179>,
+    <https://semopenalex.org/concept/C93038891> .
+
+<https://semopenalex.org/work/W1673391334> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C73555534>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C95623464> .
+
+<https://semopenalex.org/work/W2117530999> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C126838900>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C120665830>,
+    <https://semopenalex.org/concept/C121332964>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C115961682>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C15744967>, <https://semopenalex.org/concept/C202444582>,
+    <https://semopenalex.org/concept/C77805123>, <https://semopenalex.org/concept/C9652623>,
+    <https://semopenalex.org/concept/C143409427>, <https://semopenalex.org/concept/C19527891>,
+    <https://semopenalex.org/concept/C2780586970>, <https://semopenalex.org/concept/C93038891>,
+    <https://semopenalex.org/concept/C2780226545> .
+
+<https://semopenalex.org/work/W2538830880> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C105795698>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C152877465>, <https://semopenalex.org/concept/C83546350> .
+
+<https://semopenalex.org/work/W2988916019> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C205649164>,
+    <https://semopenalex.org/concept/C33923547>, <https://semopenalex.org/concept/C17744445>,
+    <https://semopenalex.org/concept/C199539241>, <https://semopenalex.org/concept/C138885662>,
+    <https://semopenalex.org/concept/C41895202>, <https://semopenalex.org/concept/C166957645>,
+    <https://semopenalex.org/concept/C202444582>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C9652623>,
+    <https://semopenalex.org/concept/C94625758>, <https://semopenalex.org/concept/C2779343474>,
+    <https://semopenalex.org/concept/C108583219>, <https://semopenalex.org/concept/C2781238097>,
+    <https://semopenalex.org/concept/C2776151529>, <https://semopenalex.org/concept/C59404180>,
+    <https://semopenalex.org/concept/C64876066>, <https://semopenalex.org/concept/C2776359362>,
+    <https://semopenalex.org/concept/C2776401178>, <https://semopenalex.org/concept/C2779542340> .
+
+<https://semopenalex.org/work/W1815337875> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C71924100>,
+    <https://semopenalex.org/concept/C142724271>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C89600930>, <https://semopenalex.org/concept/C2779130545> .
+
+<https://semopenalex.org/work/W1974314515> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C86803240>,
+    <https://semopenalex.org/concept/C90856448>, <https://semopenalex.org/concept/C50644808>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C49937458>,
+    <https://semopenalex.org/concept/C47432892>, <https://semopenalex.org/concept/C2780181586>,
+    <https://semopenalex.org/concept/C9679016> .
+
+<https://semopenalex.org/work/W2063552084> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C126838900>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C142724271>,
+    <https://semopenalex.org/concept/C143409427>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C2779651940>, <https://semopenalex.org/concept/C124504099>,
+    <https://semopenalex.org/concept/C2781192897>, <https://semopenalex.org/concept/C2779130545> .
+
+<https://semopenalex.org/work/W2016291052> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C126838900>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C143409427>,
+    <https://semopenalex.org/concept/C97133563> .
+
+<https://semopenalex.org/work/W2038344945> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C114614502>,
+    <https://semopenalex.org/concept/C27438332>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C122280245>,
+    <https://semopenalex.org/concept/C182335926>, <https://semopenalex.org/concept/C95623464>,
+    <https://semopenalex.org/concept/C125168437>, <https://semopenalex.org/concept/C14948415>,
+    <https://semopenalex.org/concept/C74193536> .
+
+<https://semopenalex.org/work/W2050729568> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C126838900>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C46141821>, <https://semopenalex.org/concept/C2777052490>,
+    <https://semopenalex.org/concept/C143409427> .
+
+<https://semopenalex.org/work/W2090221122> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C50644808>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C52622490>,
+    <https://semopenalex.org/concept/C9417928>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C193828747>, <https://semopenalex.org/concept/C53533937>,
+    <https://semopenalex.org/concept/C196216189>, <https://semopenalex.org/concept/C46286280>,
+    <https://semopenalex.org/concept/C47432892>, <https://semopenalex.org/concept/C83665646>,
+    <https://semopenalex.org/concept/C180064427>, <https://semopenalex.org/concept/C73339587>,
+    <https://semopenalex.org/concept/C87335442> .
+
+<https://semopenalex.org/work/W2905510341> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C185592680>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C138885662>,
+    <https://semopenalex.org/concept/C41895202>, <https://semopenalex.org/concept/C43617362>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C52622490>,
+    <https://semopenalex.org/concept/C4725764>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C2776401178> .
+
+<https://semopenalex.org/work/W2132425109> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C111919701>, <https://semopenalex.org/concept/C41008148>,
+    <https://semopenalex.org/concept/C121332964>, <https://semopenalex.org/concept/C62520636>,
+    <https://semopenalex.org/concept/C33923547>, <https://semopenalex.org/concept/C158693339>,
+    <https://semopenalex.org/concept/C158622935>, <https://semopenalex.org/concept/C199360897>,
+    <https://semopenalex.org/concept/C11413529>, <https://semopenalex.org/concept/C111472728>,
+    <https://semopenalex.org/concept/C138885662>, <https://semopenalex.org/concept/C114614502>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C177264268>, <https://semopenalex.org/concept/C45374587>,
+    <https://semopenalex.org/concept/C2780365114>, <https://semopenalex.org/concept/C55439883>,
+    <https://semopenalex.org/concept/C2780586882>, <https://semopenalex.org/concept/C74193536> .
+
+<https://semopenalex.org/work/W1978627835> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C115961682>, <https://semopenalex.org/concept/C138885662>,
+    <https://semopenalex.org/concept/C41895202>, <https://semopenalex.org/concept/C17212007>,
+    <https://semopenalex.org/concept/C73555534>, <https://semopenalex.org/concept/C94641424>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C83665646>,
+    <https://semopenalex.org/concept/C65885262>, <https://semopenalex.org/concept/C25694479>,
+    <https://semopenalex.org/concept/C24145651>, <https://semopenalex.org/concept/C2776401178> .
+
+<https://semopenalex.org/work/W2895582358> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099> .
+
+<https://semopenalex.org/work/W2798986179> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C71924100>,
+    <https://semopenalex.org/concept/C142724271>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C2779130545> .
+
+<https://semopenalex.org/work/W2047424515> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C127413603>, <https://semopenalex.org/concept/C41008148>,
+    <https://semopenalex.org/concept/C71924100>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C115961682>, <https://semopenalex.org/concept/C138885662>,
+    <https://semopenalex.org/concept/C41895202>, <https://semopenalex.org/concept/C27438332>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C147176958>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C502942594>,
+    <https://semopenalex.org/concept/C53533937>, <https://semopenalex.org/concept/C2777286243>,
+    <https://semopenalex.org/concept/C2778227246>, <https://semopenalex.org/concept/C2776401178> .
+
+<https://semopenalex.org/work/W2791566664> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C52622490>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C196216189>, <https://semopenalex.org/concept/C47432892>,
+    <https://semopenalex.org/concept/C75294576> .
+
+<https://semopenalex.org/work/W2123498585> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C71924100>,
+    <https://semopenalex.org/concept/C120665830>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C142724271>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31601959>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C19527891>, <https://semopenalex.org/concept/C2779130545>,
+    <https://semopenalex.org/concept/C166704113>, <https://semopenalex.org/concept/C192209626> .
+
+<https://semopenalex.org/work/W2252826794> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C121332964>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C74650414>,
+    <https://semopenalex.org/concept/C179254644> .
+
+<https://semopenalex.org/work/W2767488589> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C169258074>,
+    <https://semopenalex.org/concept/C95623464> .
+
+<https://semopenalex.org/work/W2768274329> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C71924100>,
+    <https://semopenalex.org/concept/C15744967>, <https://semopenalex.org/concept/C19527891> .
+
+<https://semopenalex.org/work/W2774005525> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C134306372>,
+    <https://semopenalex.org/concept/C33923547>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C73555534>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099>, <https://semopenalex.org/concept/C77618280>,
+    <https://semopenalex.org/concept/C196216189>, <https://semopenalex.org/concept/C46286280>,
+    <https://semopenalex.org/concept/C47432892> .
+
+<https://semopenalex.org/work/W2911628061> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C199360897>, <https://semopenalex.org/concept/C11413529>,
+    <https://semopenalex.org/concept/C202444582>, <https://semopenalex.org/concept/C119857082>,
+    <https://semopenalex.org/concept/C114614502>, <https://semopenalex.org/concept/C173608175>,
+    <https://semopenalex.org/concept/C80444323>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C118524514>, <https://semopenalex.org/concept/C45374587>,
+    <https://semopenalex.org/concept/C33676613>, <https://semopenalex.org/concept/C2781039887>,
+    <https://semopenalex.org/concept/C26713055>, <https://semopenalex.org/concept/C74193536> .
+
+<https://semopenalex.org/work/W2005096862> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C11413529>,
+    <https://semopenalex.org/concept/C58166>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C89600930> .
+
+<https://semopenalex.org/work/W2557664022> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C71924100>,
+    <https://semopenalex.org/concept/C142724271>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C105795698>, <https://semopenalex.org/concept/C31972630>,
+    <https://semopenalex.org/concept/C153180895>, <https://semopenalex.org/concept/C12267149>,
+    <https://semopenalex.org/concept/C185429906>, <https://semopenalex.org/concept/C196216189>,
+    <https://semopenalex.org/concept/C47432892>, <https://semopenalex.org/concept/C207886595>,
+    <https://semopenalex.org/concept/C131720326>, <https://semopenalex.org/concept/C9936470> .
+
+<https://semopenalex.org/work/W2100822646> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C115961682>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C73555534>,
+    <https://semopenalex.org/concept/C207968372>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C89600930>,
+    <https://semopenalex.org/concept/C124504099> .
+
+<https://semopenalex.org/work/W2204969442> sp:hasConcept <https://semopenalex.org/concept/C154945302>,
+    <https://semopenalex.org/concept/C41008148>, <https://semopenalex.org/concept/C33923547>,
+    <https://semopenalex.org/concept/C31972630>, <https://semopenalex.org/concept/C202444582>,
+    <https://semopenalex.org/concept/C114614502>, <https://semopenalex.org/concept/C27438332>,
+    <https://semopenalex.org/concept/C69738355>, <https://semopenalex.org/concept/C153180895>,
+    <https://semopenalex.org/concept/C12267149>, <https://semopenalex.org/concept/C122280245>,
+    <https://semopenalex.org/concept/C196216189>, <https://semopenalex.org/concept/C46286280>,
+    <https://semopenalex.org/concept/C47432892>, <https://semopenalex.org/concept/C182335926>,
+    <https://semopenalex.org/concept/C33676613>, <https://semopenalex.org/concept/C2779549770>,
+    <https://semopenalex.org/concept/C74193536> .
+
+<https://semopenalex.org/author/A4356737578> <http://www.w3.org/ns/org#memberOf> <https://semopenalex.org/institution/I4210138565> .
