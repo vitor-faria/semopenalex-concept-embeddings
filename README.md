@@ -78,3 +78,28 @@ This toy example (Concept [Artificial Intelligence](https://semopenalex.org/conc
 with 20k triples and default parameters) is materialized in a file, so the API will not execute any pipeline 
 step. This is to illustrate how results are presented, and also to easily check if the 
 API is available without computing embeddings.
+
+## Production endpoint
+
+A Flask version of this project is available in the following endpoint:
+
+`https://concept-embeddings-fo6ivoj5aa-uc.a.run.app/`
+
+The toy example output can than be fetched by the following GET request:
+
+https://concept-embeddings-fo6ivoj5aa-uc.a.run.app/?concept_id=C154945302&limit=20000
+
+### Metaphactory integration
+
+The production endpoint can be integrated to a Metaphactory instance by adding the following configurations:
+
+- Add a repository `conceptembs` with 
+[this content](metaphactory_templates/conceptembs_repository.ttl)
+- Update the repository `defaultEphedra` with 
+[this content](metaphactory_templates/default_ephedra_repository.ttl)
+- Add a Ephedra service `conceptembs` with 
+[this content](metaphactory_templates/conceptembs_ephedra_service.ttl)
+
+Done that, the API can be queried directly from Metaphactory with SPARQL. 
+A SPARQL query that returns the toy example is in 
+[this file](metaphactory_templates/toy_example_sparql.sparql).

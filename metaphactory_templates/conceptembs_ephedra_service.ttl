@@ -1,0 +1,207 @@
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX spin: <http://spinrdf.org/spin#>
+PREFIX spl: <http://spinrdf.org/spl#>
+PREFIX rdf2vec: <http://example.org/rdf2vec#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX ephedra: <http://www.metaphacts.com/ontologies/platform/ephedra#>
+PREFIX sail: <http://www.openrdf.org/config/sail#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://www.metaphacts.com/ontologies/platform/service/custom#>
+
+ephedra:conceptembs a ephedra:Service ;
+
+  sail:sailType "metaphacts:RESTService" ;
+  rdfs:label "A wrapper for the RDF2Vec service." ;
+  ephedra:hasSPARQLPattern (
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:inputConcept ;
+      sp:object :_concept_id
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:year ;
+      sp:object :_year
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:limit ;
+      sp:object :_limit
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:neighbors ;
+      sp:object :_neighbors
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:max_depth ;
+      sp:object :_max_depth
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:max_walks ;
+      sp:object :_max_walks
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:random_seed ;
+      sp:object :_random_seed
+    ]
+
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:concept ;
+      sp:object :_concept
+    ]
+		[
+      sp:subject :_results ;
+      sp:predicate rdf2vec:distance ;
+      sp:object :_distance
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:rank ;
+      sp:object :_rank
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdfs:prefLabel ;
+      sp:object :_prefLabel
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:worksCount ;
+      sp:object :_worksCount
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:x ;
+      sp:object :_x
+    ]
+    [
+      sp:subject :_results ;
+      sp:predicate rdf2vec:y ;
+      sp:object :_y
+    ]
+  ) ;
+  spin:constraint
+  [
+    a spl:Argument ;
+    rdfs:comment "input concept id" ;
+    spl:predicate :_concept_id ;
+    spl:valueType xsd:string
+    ] ;
+	spin:constraint
+  [
+    a spl:Argument ;
+    rdfs:comment "publication year of the works" ;
+    spl:predicate :_year ;
+    spl:defaultValue "2022"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+  spin:constraint
+	[
+    a spl:Argument ;
+    rdfs:comment "number of triples in subgraph" ;
+    spl:predicate :_limit ;
+    spl:defaultValue "20000"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+  spin:constraint
+	[
+    a spl:Argument ;
+    rdfs:comment "number of neighbor concepts" ;
+    spl:predicate :_neighbors ;
+    spl:defaultValue "10"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+  spin:constraint
+	[
+    a spl:Argument ;
+    rdfs:comment "max walk length in RDF2Vec" ;
+    spl:predicate :_max_depth ;
+    spl:defaultValue "6"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+  spin:constraint
+	[
+    a spl:Argument ;
+    rdfs:comment "number of walks per entity in RDF2Vec" ;
+    spl:predicate :_max_walks ;
+    spl:defaultValue "12"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+  spin:constraint
+	[
+    a spl:Argument ;
+    rdfs:comment "random seed for RandomWalker and Word2Vec steps in RDF2Vec" ;
+    spl:predicate :_random_seed ;
+    spl:defaultValue "42"^^xsd:integer ;
+    spl:valueType xsd:integer
+    ] ;
+
+	spin:column
+  [
+    a spin:Column ;
+    rdfs:comment "results" ;
+    spl:predicate :_results ;
+    spl:valueType rdfs:Resource;
+    ephedra:jsonPath "$"
+  ] ;
+	spin:column
+  [
+    a spin:Column ;
+    rdfs:comment "concept" ;
+    spl:predicate :_concept ;
+    spl:valueType rdfs:Resource;
+    ephedra:jsonPath "$.concept"
+  ] ;
+	spin:column
+	[
+    a spin:Column ;
+    rdfs:comment "Preferred Label" ;
+    spl:predicate :_prefLabel ;
+    spl:valueType xsd:string;
+    ephedra:jsonPath "$.prefLabel"
+  ] ;
+  spin:column
+  [
+    a spin:Column ;
+    rdfs:comment "X Axis" ;
+    spl:predicate :_x ;
+    spl:valueType xsd:float;
+    ephedra:jsonPath "$.x"
+  ] ;
+	spin:column
+  [
+    a spin:Column ;
+    rdfs:comment "Y Axis" ;
+    spl:predicate :_y ;
+    spl:valueType xsd:float;
+    ephedra:jsonPath "$.y"
+  ] ;
+	spin:column
+	[
+    a spin:Column ;
+    rdfs:comment "Occurence in works" ;
+    spl:predicate :_worksCount ;
+    spl:valueType xsd:integer;
+    ephedra:jsonPath "$.worksCount"
+  ] ;
+	spin:column
+	[
+    a spin:Column ;
+    rdfs:comment "Similarity Rank" ;
+    spl:predicate :_rank ;
+    spl:valueType xsd:integer;
+    ephedra:jsonPath "$.rank"
+  ] ;
+	spin:column
+  [
+    a spin:Column ;
+    rdfs:comment "Distance to Input Concept" ;
+    spl:predicate :_distance ;
+    spl:valueType xsd:float;
+    ephedra:jsonPath "$.distance"
+  ] .

@@ -1,0 +1,19 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf2vec: <http://example.org/rdf2vec#>
+PREFIX property:<https://semopenalex.org/property/>
+SELECT * WHERE {
+  BIND("C154945302"^^xsd:string as ?input)
+  SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
+   ?results rdf2vec:inputConcept ?input .
+   ?results rdf2vec:concept ?concept .
+   ?results rdf2vec:distance ?distance .
+   ?results rdf2vec:rank ?rank .
+   ?results rdfs:label ?prefLabel .
+   ?results rdf2vec:worksCount ?worksCount .
+   ?results rdf2vec:x ?x .
+   ?results rdf2vec:y ?y .
+  }
+}
