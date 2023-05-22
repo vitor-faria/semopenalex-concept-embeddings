@@ -148,7 +148,7 @@
   <div class="page">
     <div class="header">
       <div class="header_title">
-        <span class="title">Semantic Embeddings</span>
+        <span class="title">Artificial Intelligence</span>
         <div style="display: flex; justify-content:space-between">
           <div class="institution"></div>
         </div>
@@ -157,115 +157,110 @@
     <div class="body" style='height: 100%'>
       <div class= "row_cards">
         <div class="card_embeddings_concept">
-          <div class="subTitle">Embeddings of Artificial Intelligence and related concepts</div>
+          <div class="subTitle">RDF2Vec embeddings and nearest concepts</div>
           <div class="chart" id="chart1">
-            <bs-tabs unmount-on-exit=true id='placeholder'>
-              <bs-tab event-key='5' title='2022'>
-                <Center>
-                <semantic-chart provider='highcharts' type="bubble"  query='
-                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                  PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                  PREFIX rdf2vec: <http://example.org/rdf2vec#>
-                  PREFIX property:<https://semopenalex.org/property/>
-                  SELECT * WHERE {
-                    BIND("C154945302"^^xsd:string as ?input)
-                    SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
-                    ?results rdf2vec:inputConcept ?input .
-                    ?results rdf2vec:concept ?concept .
-                    ?results rdf2vec:distance ?distance .
-                    ?results rdf2vec:rank ?rank .
-                    ?results rdfs:label ?prefLabel .
-                    ?results rdf2vec:worksCount ?worksCount .
-                    ?results rdf2vec:x ?x .
-                    ?results rdf2vec:y ?y .
-                    }
+            <Center>
+              <semantic-chart provider='highcharts' type="bubble"  query='
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+                PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX rdf2vec: <http://example.org/rdf2vec#>
+                PREFIX property:<https://semopenalex.org/property/>
+                SELECT * WHERE {
+                  BIND("C154945302"^^xsd:string as ?input)
+                  SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
+                  ?results rdf2vec:inputConcept ?input .
+                  ?results rdf2vec:concept ?concept .
+                  ?results rdf2vec:distance ?distance .
+                  ?results rdf2vec:rank ?rank .
+                  ?results rdfs:label ?prefLabel .
+                  ?results rdf2vec:worksCount ?worksCount .
+                  ?results rdf2vec:x ?x .
+                  ?results rdf2vec:y ?y .
                   }
-                  ' sets='[{"dataSetName": "concept", "category": "prefLabel", "x": "x", "y": "y", "z": "worksCount"}]'
-                    style-highcharts='{
-                    "yAxis": {
-                      "title": {
-                          "text": "Y-Coordinate"
-                      }
-                    },
-                    "xAxis": {
-                      "title": {
-                          "text": "X-Coordinate"
-                      }
-                    },
-                    "series": [{"className": "custom-style-series"}],
-                    "plotOptions": {
-                      "series": {
-                        "colorByPoint": true,
-                        "marker": {
-                          "radius": 12
-                        }
-                      }
-                    },
-                    "legend": {"enabled": false},
-                        "chart": {
-                            "zoomType": "xy",
-                            "zoomBySingleTouch": true,
-                            "panKey": "shift",
-                            "panning": {
-                              "enabled": true,
-                              "type": "xy"
-                            }
-                        }
-                  }'
-                  tooltip-template='{{> tooltip}}'>
-                  <template id="tooltip">
-                    {{#each points}}
-                    <div><h3>{{bindings.prefLabel.value}}</h3></div>
-                    <div>X: <span class="pointValue">{{bindings.x.value}}</span></div>
-                    <div>Y: <span class="pointValue">{{bindings.y.value}}</span></div>
-                    <div>Works Count: <span class="pointValue">{{bindings.worksCount.value}}</span></div>
-                    {{/each}}
-                  </template>
-                </semantic-chart>
-                  </Center>
-
-                  <b style='color:#2e2e2e'>Explanation:</b>
-                  <ul style='color:#2e2e2e'>
-                    <li>This Chart shows the first two dimensions of rdf2vec embeddings of sub-concepts of Computer Science based on the database SemopenAlex.</li>
-                    <li>Below the Chart are all concepts listed in a table.</li>
-                    <li>Bubble-size: Number of works related to the specific concept.</li>
-                  </ul>
-                  <Center>
-                <semantic-table query='
-                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                  PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                  PREFIX rdf2vec: <http://example.org/rdf2vec#>
-                  PREFIX property:<https://semopenalex.org/property/>
-                  SELECT * WHERE {
-                    BIND("C154945302"^^xsd:string as ?input)
-                    SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
-                    ?results rdf2vec:inputConcept ?input .
-                    ?results rdf2vec:concept ?concept .
-                    ?results rdf2vec:distance ?distance .
-                    ?results rdf2vec:rank ?rank .
-                    ?results rdfs:label ?prefLabel .
-                    ?results rdf2vec:worksCount ?worksCount .
-                    ?results rdf2vec:x ?x .
-                    ?results rdf2vec:y ?y .
+                }
+                ' sets='[{"dataSetName": "concept", "category": "prefLabel", "x": "x", "y": "y", "z": "worksCount"}]'
+                  style-highcharts='{
+                  "yAxis": {
+                    "title": {
+                        "text": "Y-Coordinate"
                     }
-                  }
-                  ' column-configuration='[
-                    {"variableName": "prefLabel", "displayName": "Concept"},
-                    {"variableName": "x", "displayName": "X-Coordinate"},
-                    {"variableName": "y", "displayName": "Y-Coordinate"},
-                    {"variableName": "distance", "displayName": "Distance"},
-                    {"variableName": "worksCount", "displayName": "Works Count"}
-                  ]'
-                >
-                </semantic-table>
+                  },
+                  "xAxis": {
+                    "title": {
+                        "text": "X-Coordinate"
+                    }
+                  },
+                  "series": [{"className": "custom-style-series"}],
+                  "plotOptions": {
+                    "series": {
+                      "colorByPoint": true,
+                      "marker": {
+                        "radius": 12
+                      }
+                    }
+                  },
+                  "legend": {"enabled": false},
+                      "chart": {
+                          "zoomType": "xy",
+                          "zoomBySingleTouch": true,
+                          "panKey": "shift",
+                          "panning": {
+                            "enabled": true,
+                            "type": "xy"
+                          }
+                      }
+                }'
+                tooltip-template='{{> tooltip}}'>
+                <template id="tooltip">
+                  {{#each points}}
+                  <div><h3>{{bindings.prefLabel.value}}</h3></div>
+                  <div>X: <span class="pointValue">{{bindings.x.value}}</span></div>
+                  <div>Y: <span class="pointValue">{{bindings.y.value}}</span></div>
+                  <div>Works Count: <span class="pointValue">{{bindings.worksCount.value}}</span></div>
+                  {{/each}}
+                </template>
+              </semantic-chart>
                 </Center>
-              </bs-tab>
-              
-            </bs-tabs>
+
+                <b style='color:#2e2e2e'>Explanation:</b>
+                <ul style='color:#2e2e2e'>
+                  <li>This chart shows the rdf2vec embeddings of the nearest concepts to Artificial Intelligence in the vector space, based on the database SemopenAlex.</li>
+                  <li>Below the Chart are all concepts listed in a table.</li>
+                  <li>Bubble-size: Number of works related to the specific concept.</li>
+                </ul>
+                <Center>
+              <semantic-table query='
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+                PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX rdf2vec: <http://example.org/rdf2vec#>
+                PREFIX property:<https://semopenalex.org/property/>
+                SELECT * WHERE {
+                  BIND("C154945302"^^xsd:string as ?input)
+                  SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
+                  ?results rdf2vec:inputConcept ?input .
+                  ?results rdf2vec:concept ?concept .
+                  ?results rdf2vec:distance ?distance .
+                  ?results rdf2vec:rank ?rank .
+                  ?results rdfs:label ?prefLabel .
+                  ?results rdf2vec:worksCount ?worksCount .
+                  ?results rdf2vec:x ?x .
+                  ?results rdf2vec:y ?y .
+                  }
+                }
+                ' column-configuration='[
+                  {"variableName": "prefLabel", "displayName": "Concept"},
+                  {"variableName": "x", "displayName": "X-Coordinate"},
+                  {"variableName": "y", "displayName": "Y-Coordinate"},
+                  {"variableName": "distance", "displayName": "Distance"},
+                  {"variableName": "worksCount", "displayName": "Works Count"}
+                ]'
+              >
+              </semantic-table>
+            </Center>
           </div>
         </div>
       </div>
