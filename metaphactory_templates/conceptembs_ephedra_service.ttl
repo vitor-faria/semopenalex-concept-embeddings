@@ -48,7 +48,7 @@ ephedra:conceptembs a ephedra:Service ;
       sp:predicate rdf2vec:random_seed ;
       sp:object :_random_seed
     ]
-
+    
     [
       sp:subject :_results ;
       sp:predicate rdf2vec:concept ;
@@ -66,7 +66,7 @@ ephedra:conceptembs a ephedra:Service ;
     ]
     [
       sp:subject :_results ;
-      sp:predicate rdfs:prefLabel ;
+      sp:predicate rdfs:label ;
       sp:object :_prefLabel
     ]
     [
@@ -140,7 +140,7 @@ ephedra:conceptembs a ephedra:Service ;
     spl:defaultValue "42"^^xsd:integer ;
     spl:valueType xsd:integer
     ] ;
-
+    
 	spin:column
   [
     a spin:Column ;
@@ -162,7 +162,7 @@ ephedra:conceptembs a ephedra:Service ;
     a spin:Column ;
     rdfs:comment "Preferred Label" ;
     spl:predicate :_prefLabel ;
-    spl:valueType xsd:string;
+    spl:valueType rdfs:label;
     ephedra:jsonPath "$.prefLabel"
   ] ;
   spin:column
