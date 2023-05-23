@@ -1,0 +1,301 @@
+<style>
+  h3, .h3 {
+	  background-color: #f9f9f9;
+  }
+  .show-term-in-vocabulary-link-class {
+    justify-content: flex-end;
+    display: flex;
+  }
+</style>
+
+[[#*inline "skosInfo"]]
+<mp-popover title="[[title]]">
+  <mp-popover-trigger placement="right"  trigger='["click"]'>
+    <i class="fa fa-info-circle" aria-hidden="true" style='margin-left:10px;cursor: pointer;' title="Click to show explanation."></i>
+  </mp-popover-trigger>
+  <mp-popover-content style="background:white;">
+    [[description]]
+  </mp-popover-content>
+</mp-popover>
+[[/inline]]
+
+<div class="page">
+
+    <div class='page__header-navtabs show-term-in-vocabulary-link-class'>
+      {{>::show-term-in-vocabulary-link}}
+    </div>
+    <bs-tabs id="tabs" class='page__body-navtabs' unmount-on-exit=true>
+      <bs-tab event-key="0" title="Summary">
+         <bs-row>
+           <bs-col sm="6" md="6">
+              [[> "http://www.metaphacts.com/resource/SkosResourcePropertiesInclude" ]]
+          </bs-col>
+          <bs-col sm="6" md="6">
+            
+            <semantic-tree collapsed=true
+                keys-opened='["{{page-resource}}"]'
+                roots='[[jsonArrayFromSelect "SELECT DISTINCT ?top {?? skos:broader*|(skos:broader*/(skos:topConceptOf|^skos:hasTopConcept)|(skos:topConceptOf|^skos:hasTopConcept)) ?top. FILTER NOT EXISTS {?top skos:broader|(skos:topConceptOf|^skos:hasTopConcept) ?parent}}"]]'
+                query='SELECT DISTINCT ?node ?parent WHERE {
+                  {
+                    ?? skos:broader* ?node.
+                    OPTIONAL{?node skos:broader ?parent }
+                  }UNION{
+                    ?node skos:broader* ??.
+                    OPTIONAL{?node skos:broader ?parent }
+                  }UNION{
+                    ?parent ^skos:topConceptOf|skos:hasTopConcept ?node.
+                    ?? skos:broader* ?node.
+                  }
+                }'
+                tuple-template='{{> nodeTemplate conceptIri=conceptIri}}'>
+              <template id="nodeTemplate">
+                <span>
+                  {{#ifCond node.value "===" (page-resource) }}
+                  <span style="background: cyan;"> <semantic-link iri='{{node.value}}'></semantic-link></span>
+                  {{else}}
+                  <semantic-link iri='{{node.value}}'></semantic-link>
+                  {{/ifCond}}
+                </span>
+              </template>
+            </semantic-tree>
+          </bs-col>
+
+				</bs-row>
+      </bs-tab>
+      <bs-tab event-key="2" title="Semantic Relations">
+        <div>
+          [[! -- <h2>Hierarchical Relations</h2> --]]
+          <div data-flex-layout="row top-stretch">
+            <div>
+              <h3>
+                Broader Concepts
+                [[> skosInfo title="skos:broader" description="Concepts that are broader (more generic) than this one."]]
+              </h3>
+              <semantic-table query='SELECT DISTINCT * WHERE {?? skos:broader|^skos:narrower ?BroaderConcept}'
+                no-result-template='No broader concepts.'></semantic-table>
+            </div><div>
+            <h3>
+              Narrower Concepts
+              [[> skosInfo title="skos:narrower" description="Concepts that are narrower (more specific) than this one."]]
+            </h3>
+            <semantic-table query='SELECT DISTINCT * WHERE {?? skos:narrower|^skos:broader ?NarrowerConcept}'
+              no-result-template='No narrower concepts.'></semantic-table>
+            </div>
+          </div>
+          [[! -- <h2>Associative Relations</h2> --]]
+          <h3>
+            Related Concepts
+            [[> skosInfo title="skos:related" description="Relation is purely associative. Can mean everything."]]
+          </h3>
+          <semantic-table query='SELECT DISTINCT * WHERE {?? skos:related|^skos:related ?Related}'
+            no-result-template='No related concepts.'></semantic-table>
+        </div>
+      </bs-tab>
+      <bs-tab event-key="3" title="Mapping Relations">
+        <div>
+          [[! --
+          <h2>Equivalent Matches</h2>
+          <hr>
+          --]]
+          <div data-flex-layout="row top-stretch">
+            <div>
+              <h3>
+                Exact Matches
+                [[> skosInfo title="skos:exactMatch" description="High degree of confidence that concepts are equivalent. Platform can use concepts interchangeably for query expansion."]]
+              </h3>
+              <semantic-table query='SELECT DISTINCT * WHERE {?? skos:exactMatch|^skos:exactMatch ?ExactMatch}'
+                no-result-template='No exact matching concepts.'></semantic-table>
+            </div>
+            <div>
+              <h3>
+                Close Matches
+                [[> skosInfo title="skos:closeMatch" description="Certain degree of confidence that concepts are close to be equivalent. Platform may use concepts interchangeably for query expansion."]]
+              </h3>
+              <semantic-table query='SELECT DISTINCT * WHERE {?? skos:closeMatch|^skos:closeMatch ?CloseMatch}'
+                no-result-template='No close matching concepts.'></semantic-table>
+            </div></div>
+          [[! --
+          <h2>Hierarchical Matches</h2>
+          <hr>
+          --]]
+          <div data-flex-layout="row top-stretch">
+            <div>
+              <h3>
+                Broad Matches
+                [[> skosInfo title="skos:broadMatch" description="Linked concepts are broader matches (more generic)."]]
+              </h3>
+              <semantic-table query='SELECT DISTINCT * WHERE {?? skos:broadMatch|^skos:narrowMatch ?BroadMatch}'
+                no-result-template='No broad matching concepts.'></semantic-table>
+            </div>
+            <div>
+              <h3>Narrow Matches
+                [[> skosInfo title="skos:narrowMatch" description="Linked concepts are narrower matches (more specific)."]]
+              </h3>
+              <semantic-table query='SELECT DISTINCT * WHERE {?? skos:narrowMatch|^skos:broadMatch ?NarrowMatch}'
+                no-result-template='No narrow matching concepts.'></semantic-table>
+            </div>
+
+          </div>
+
+          [[! --
+          <h2>Associative Matches</h2>
+          <hr>
+          --]]
+          <h3>
+            Related Matches
+            [[> skosInfo title="skos:relatedMatch" description="Relation is purely associative. Can mean everything."]]
+          </h3>
+          <semantic-table query='SELECT DISTINCT * WHERE {?? skos:relatedMatch|^skos:relatedMatch ?RelatedMatch}'
+            no-result-template='No related matching concepts.'></semantic-table>
+        </div>
+      </bs-tab>
+
+      <bs-tab event-key="4" title="Diagrams">
+        {{> Assets:OntodiaDiagramsTable resource=(page-resource)}}
+      </bs-tab>
+
+      <bs-tab event-key="5" title="Semantic Embeddings">
+        <Center>
+          <div class="page">
+            <div class="header">
+              <div class="header_title">
+                <span class="title">{{string-slice (page-resource) (string-indexOf (page-resource) "C")}}</span>
+                <div style="display: flex; justify-content:space-between">
+                  <div class="institution"></div>
+                </div>
+              </div>
+            </div>
+            <div class="body" style='height: 100%'>
+              <div class= "row_cards">
+                <div class="card_embeddings_concept">
+                  <div class="subTitle">RDF2Vec embeddings and nearest concepts</div>
+                  <div class="chart" id="chart1">
+                    <Center>
+                      <semantic-chart provider='highcharts' type="bubble"  query='
+                        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                        PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+                        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                        PREFIX rdf2vec: <http://example.org/rdf2vec#>
+                        PREFIX property:<https://semopenalex.org/property/>
+                        SELECT * WHERE {
+                          BIND("{{string-slice (page-resource) (string-indexOf (page-resource) "C")}}"^^xsd:string as ?input)
+                          SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
+                          ?results rdf2vec:inputConcept ?input .
+                          ?results rdf2vec:concept ?concept .
+                          ?results rdf2vec:distance ?distance .
+                          ?results rdf2vec:rank ?rank .
+                          ?results rdfs:label ?prefLabel .
+                          ?results rdf2vec:worksCount ?worksCount .
+                          ?results rdf2vec:x ?x .
+                          ?results rdf2vec:y ?y .
+                          }
+                        }
+                        ' sets='[{"dataSetName": "concept", "category": "prefLabel", "x": "x", "y": "y", "z": "worksCount"}]'
+                          style-highcharts='{
+                          "yAxis": {
+                            "title": {
+                                "text": "Y-Coordinate"
+                            }
+                          },
+                          "xAxis": {
+                            "title": {
+                                "text": "X-Coordinate"
+                            }
+                          },
+                          "series": [{"className": "custom-style-series"}],
+                          "plotOptions": {
+                            "series": {
+                              "colorByPoint": true,
+                              "marker": {
+                                "radius": 12
+                              }
+                            }
+                          },
+                          "legend": {"enabled": false},
+                              "chart": {
+                                  "zoomType": "xy",
+                                  "zoomBySingleTouch": true,
+                                  "panKey": "shift",
+                                  "panning": {
+                                    "enabled": true,
+                                    "type": "xy"
+                                  }
+                              }
+                        }'
+                        tooltip-template='{{> tooltip}}'>
+                        <template id="tooltip">
+                          {{#each points}}
+                          <div><h3>{{bindings.prefLabel.value}}</h3></div>
+                          <div>X: <span class="pointValue">{{bindings.x.value}}</span></div>
+                          <div>Y: <span class="pointValue">{{bindings.y.value}}</span></div>
+                          <div>Works Count: <span class="pointValue">{{bindings.worksCount.value}}</span></div>
+                          {{/each}}
+                        </template>
+                      </semantic-chart>
+                        </Center>
+
+                        <b style='color:#2e2e2e'>Explanation:</b>
+                        <ul style='color:#2e2e2e'>
+                          <li>This chart shows the rdf2vec embeddings of the nearest concepts in the vector space, based on the database SemopenAlex.</li>
+                          <li>Bubble-size: Number of works related to the specific concept.</li>
+                          <li>Concepts in the chart are listed in the table below.</li>
+                        </ul>
+                        <Center>
+                      <semantic-table query='
+                        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                        PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+                        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+                        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                        PREFIX rdf2vec: <http://example.org/rdf2vec#>
+                        PREFIX property:<https://semopenalex.org/property/>
+                        SELECT * WHERE {
+                          BIND("{{string-slice (page-resource) (string-indexOf (page-resource) "C")}}"^^xsd:string as ?input)
+                          SERVICE <http://www.metaphacts.com/ontologies/platform/service/conceptembs> {
+                          ?results rdf2vec:inputConcept ?input .
+                          ?results rdf2vec:concept ?concept .
+                          ?results rdf2vec:distance ?distance .
+                          ?results rdf2vec:rank ?rank .
+                          ?results rdfs:label ?prefLabel.
+                          ?results rdf2vec:worksCount ?worksCount .
+                          ?results rdf2vec:x ?x .
+                          ?results rdf2vec:y ?y .
+                          }
+                        }
+                        ' column-configuration='[
+                          {"variableName": "prefLabel", "displayName": "Concept"},
+                          {"variableName": "x", "displayName": "X-Coordinate"},
+                          {"variableName": "y", "displayName": "Y-Coordinate"},
+                          {"variableName": "distance", "displayName": "Distance"},
+                          {"variableName": "worksCount", "displayName": "Works Count"}
+                        ]'
+                      >
+                      </semantic-table>
+                    </Center>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Center>
+      </bs-tab>
+
+    </bs-tabs>
+
+</div>
+
+<template-fragment id='show-term-in-vocabulary-link'>
+  <semantic-query query='SELECT ?scheme { <{{page-resource}}> skos:inScheme ?scheme. } LIMIT 1' template='{{> tmpl}}'>
+    <template id='tmpl'>
+    
+      {{#each bindings}}
+        {{#if scheme.value}}
+          <semantic-link iri='{{scheme.value}}' class='mt-md-3' style='margin-right:16px;position:absolute;font-size:12px;' urlqueryparam-term='{{page-resource}}'>
+            <i class="fa fa-external-link-square mr-2" aria-hidden="true"></i>Open in vocabulary
+          </semantic-link>
+        {{/if}}
+      {{/each}}
+  
+    </template>
+  </semantic-query>
+</template-fragment>
