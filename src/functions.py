@@ -143,11 +143,12 @@ def get_concept_labels(year):  # TODO fix works count for current year
     query_start = """
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX soap:<https://semopenalex.org/property/>
-    SELECT ?concept ?concept_l ?worksCount
+    SELECT ?concept ?concept_l ?worksCount ?level
     WHERE {
     """
     patterns = f"""
         ?concept skos:prefLabel ?concept_l . 
+        ?concept soap:level ?level .
         ?concept soap:countsByYear ?countsByYear .
         ?countsByYear soap:year {year} .
         ?countsByYear soap:worksCount ?worksCount .
@@ -197,8 +198,14 @@ def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=1
         translated_pca.append(reduced_embedding - current_concept_pca)
 
     coordinates_df = get_coordinates(input_concept, concepts_list, concepts_embeddings)
+    
     labels_df = get_concept_labels(year)
     labels_df['worksCount'] = labels_df['worksCount'].astype(int)
+    labels_df['level'] = labels_df['level'].astype(int)
+    input_concept_level = labels_df[labels_df['concept'].str.endswith(input_concept)]['level']
+    print(f'input concept has level {input_concept_level}. filtering')
+    labels_df = labels_df[labels_df['level']==input_concept_level].drop(columns=['level'])
+    
     neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
 
     neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
