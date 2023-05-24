@@ -121,7 +121,7 @@ def get_embeddings(g, max_depth=6, max_walks=12, with_reverse=True, random_seed=
         return [], []
 
 
-def get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k=10):
+def get_nearest_neighbors(input_concept, concepts_list, concepts_embeddings):
     cosine_distance = cdist(concepts_embeddings, concepts_embeddings, 'cosine')
     input_index = concepts_list.index(input_concept)
     distance_array = cosine_distance[input_index]
@@ -133,7 +133,7 @@ def get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k
         "rank": rank
     })
 
-    return result_df.set_index('concept').sort_values(by="rank").head(k)
+    return result_df.set_index('concept').sort_values(by="rank")
 
 
 def get_concept_labels(year):  # TODO fix works count for current year
@@ -148,8 +148,8 @@ def get_concept_labels(year):  # TODO fix works count for current year
     """
     patterns = f"""
         ?concept skos:prefLabel ?concept_l . 
-        ?concept soap:level ?level .
         ?concept soap:countsByYear ?countsByYear .
+        ?concept soap:level ?level .
         ?countsByYear soap:year {year} .
         ?countsByYear soap:worksCount ?worksCount .
     """
@@ -198,20 +198,18 @@ def get_concepts_df(input_concept, concepts_list, concepts_embeddings, year, k=1
         translated_pca.append(reduced_embedding - current_concept_pca)
 
     coordinates_df = get_coordinates(input_concept, concepts_list, concepts_embeddings)
-    
     labels_df = get_concept_labels(year)
     labels_df['worksCount'] = labels_df['worksCount'].astype(int)
     labels_df['level'] = labels_df['level'].astype(int)
-    input_concept_level = labels_df[labels_df['concept'].str.endswith(input_concept)]['level']
+    input_concept_level = labels_df.loc[labels_df.index.str.endswith(input_concept), 'level'].iloc[0]
     print(f'input concept has level {input_concept_level}. filtering')
     labels_df = labels_df[labels_df['level']==input_concept_level].drop(columns=['level'])
-    
-    neighbors = get_k_nearest_neighbors(input_concept, concepts_list, concepts_embeddings, k)
+    neighbors = get_nearest_neighbors(input_concept, concepts_list, concepts_embeddings)
 
     neighbors_labels = pd.merge(neighbors, labels_df, left_index=True, right_index=True)
     neighbors_labels.rename(columns={'concept_l': 'prefLabel'}, inplace=True)
 
-    return pd.merge(neighbors_labels, coordinates_df, left_index=True, right_index=True)
+    return pd.merge(neighbors_labels, coordinates_df, left_index=True, right_index=True).sort_values(by="rank").head(k)
 
 
 def get_results(
