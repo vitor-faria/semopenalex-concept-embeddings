@@ -1,92 +1,92 @@
 [
-   {
-      "concept":"https://semopenalex.org/concept/C154945302",
-      "distance":1.1102230246251565e-16,
-      "rank":0,
-      "prefLabel":"Artificial intelligence",
-      "worksCount":756286,
-      "x":0.0,
-      "y":0.0
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C89600930",
-      "distance":0.4020758347522797,
-      "rank":1,
-      "prefLabel":"Segmentation",
-      "worksCount":22867,
-      "x":5.601748063397611,
-      "y":-0.9569666175825127
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C124504099",
-      "distance":0.45575962435342476,
-      "rank":2,
-      "prefLabel":"Image segmentation",
-      "worksCount":8589,
-      "x":5.69526547184838,
-      "y":-0.7584425123941448
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C71924100",
-      "distance":0.47092938515078486,
-      "rank":3,
-      "prefLabel":"Medicine",
-      "worksCount":2319437,
-      "x":5.073608262361544,
-      "y":0.6734494014494721
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C41008148",
-      "distance":0.47560439368206986,
-      "rank":4,
-      "prefLabel":"Computer science",
-      "worksCount":2694222,
-      "x":0.9437816134627321,
-      "y":-0.26674960218292076
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C143409427",
-      "distance":0.5620006528841812,
-      "rank":5,
-      "prefLabel":"Magnetic resonance imaging",
-      "worksCount":32508,
-      "x":5.29381899786789,
-      "y":-3.605905534891788
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C115961682",
-      "distance":0.5682425821527245,
-      "rank":6,
-      "prefLabel":"Image (mathematics)",
-      "worksCount":86160,
-      "x":0.3619901034915669,
-      "y":-1.519836817709153
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C126838900",
-      "distance":0.5723026912306475,
-      "rank":7,
-      "prefLabel":"Radiology",
-      "worksCount":147322,
-      "x":4.753441971774329,
-      "y":-3.2049834315784764
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C108583219",
-      "distance":0.5727199971303936,
-      "rank":8,
-      "prefLabel":"Deep learning",
-      "worksCount":48294,
-      "x":-2.0344517532454653,
-      "y":-0.9514732745905453
-   },
-   {
-      "concept":"https://semopenalex.org/concept/C2779130545",
-      "distance":0.5780538648976838,
-      "rank":9,
-      "prefLabel":"Brain tumor",
-      "worksCount":1961,
-      "x":4.965874760286807,
-      "y":-2.419406406604071
-   }
+  {
+    "concept": "https://semopenalex.org/concept/C154945302",
+    "distance": 0.0,
+    "rank": 0,
+    "prefLabel": "Artificial intelligence",
+    "worksCount": 756286,
+    "x": 0.0,
+    "y": 0.0
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C105795698",
+    "distance": 0.4190402796572673,
+    "rank": 3,
+    "prefLabel": "Statistics",
+    "worksCount": 339416,
+    "x": 3.800531937039009,
+    "y": 2.740095422957846
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C119857082",
+    "distance": 0.49199327641138746,
+    "rank": 7,
+    "prefLabel": "Machine learning",
+    "worksCount": 263595,
+    "x": 0.5810662688501043,
+    "y": -1.3047939554871242
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C124101348",
+    "distance": 0.5171360654932037,
+    "rank": 10,
+    "prefLabel": "Data mining",
+    "worksCount": 111256,
+    "x": 2.5617405733630645,
+    "y": 0.24460383062059732
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C126322002",
+    "distance": 0.5890989588277196,
+    "rank": 17,
+    "prefLabel": "Internal medicine",
+    "worksCount": 1036681,
+    "x": 2.621200470412204,
+    "y": 0.15995305987057762
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C74650414",
+    "distance": 0.6121862203419559,
+    "rank": 18,
+    "prefLabel": "Classical mechanics",
+    "worksCount": 60054,
+    "x": -3.3331788980209134,
+    "y": -2.302984672915362
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C31972630",
+    "distance": 0.6776841102006425,
+    "rank": 23,
+    "prefLabel": "Computer vision",
+    "worksCount": 119433,
+    "x": -0.042220221053401286,
+    "y": 5.282023280259041
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C118524514",
+    "distance": 0.6940805152952618,
+    "rank": 25,
+    "prefLabel": "Computer architecture",
+    "worksCount": 6565,
+    "x": -4.141534868694078,
+    "y": 1.5341746854807714
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C173608175",
+    "distance": 0.6993428450132217,
+    "rank": 26,
+    "prefLabel": "Parallel computing",
+    "worksCount": 21907,
+    "x": -4.448949701325514,
+    "y": 1.0797748849894475
+  },
+  {
+    "concept": "https://semopenalex.org/concept/C41895202",
+    "distance": 0.6994642173096748,
+    "rank": 27,
+    "prefLabel": "Linguistics",
+    "worksCount": 374059,
+    "x": -1.6773017351170665,
+    "y": 2.1038194322094186
+  }
 ]
